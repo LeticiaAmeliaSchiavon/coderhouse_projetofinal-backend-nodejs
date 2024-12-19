@@ -1,43 +1,51 @@
 const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const exphbs = require('express-handlebars');
-const path = require('path');
+const passport = require('passport');
+const { initializePassport } = require('./config/passport.config');
+const authRouter = require('./routes/auth.routes');
 const productsRouter = require('./routes/products.routes');
-const cartsRouter = require('./routes/carts.routes');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Definir a opção strictQuery para se preparar para a mudança no Mongoose 7
+mongoose.set('strictQuery', true);
+
 // Conectar ao MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log('Conectado ao MongoDB!');
 }).catch((error) => {
   console.error('Erro ao conectar ao MongoDB:', error);
   process.exit(1);
 });
 
-// Configurar Handlebars como motor de templates
-app.engine('handlebars', exphbs.engine());
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
+// Configuração de sessões
+app.use(session({
+  secret: 'mySecret',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+}));
 
-// Middlewares para processar JSON e dados de formulários
+// Inicializar Passport
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rotas
+app.use('/auth', authRouter);
 app.use('/api/products', productsRouter);
-app.use('/api/carts', cartsRouter);
 
-// Redirecionar para as views de produtos e carrinhos
+// Rota de redirecionamento após login
 app.get('/products', (req, res) => res.redirect('/api/products/view'));
-app.get('/carts/:cid', (req, res) => res.redirect(`/api/carts/${req.params.cid}/view`));
 
 // Iniciar o servidor
 app.listen(PORT, () => {
