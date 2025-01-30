@@ -1,0 +1,8 @@
+{
+    "title": "Smartphone",
+    "description": "Um smartphone avançado",
+    "code": "SM123",
+    "price": 999.99,
+    "stock": 50,
+    "category": "electronics"
+  }
