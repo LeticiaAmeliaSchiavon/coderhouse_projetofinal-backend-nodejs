@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="alert alert-success">
+    <h2>Compra finalizada!</h2>
+    <p><strong>Código:</strong> {{ticket.code}}</p>
+    <p><strong>Total:</strong> R$ {{ticket.amount}}</p>
+    {{#if unavailableItems.length}}
+      <div class="alert alert-warning mt-3">
+        <p>Alguns itens não estão disponíveis:</p>
+        <ul>
+          {{#each unavailableItems}}
+            <li>Produto ID: {{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+  </div>
+  <a href="/products" class="btn btn-primary">Voltar</a>
+</div>
