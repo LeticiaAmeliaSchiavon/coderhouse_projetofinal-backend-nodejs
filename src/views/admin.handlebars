@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Painel Administrativo</h2>
-  <p>Bem-vindo, admin!</p>
+  <p>Bem-vindo,
+    {{user.first_name}}. Aqui você pode gerenciar produtos e usuários.</p>
 
   <a href="/api/products" class="btn">Gerenciar Produtos</a>
   <a href="/api/users" class="btn">Gerenciar Usuários</a>

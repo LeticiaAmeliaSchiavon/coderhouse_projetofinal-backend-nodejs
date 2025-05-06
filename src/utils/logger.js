@@ -11,7 +11,7 @@ module.exports = winston.createLogger({
     winston.format.timestamp({
       format: "YYYY-MM-DD HH:mm:ss",
     }),
-    winston.format.errors({ stack: true }), // Captura stack traces
+    winston.format.errors({ stack: true }),
     winston.format.json()
   ),
   transports: [
@@ -28,14 +28,14 @@ module.exports = winston.createLogger({
     new winston.transports.File({
       filename: path.join(logsDir, "error.log"),
       level: "error",
-      maxsize: 5 * 1024 * 1024, // 5MB
+      maxsize: 5 * 1024 * 1024,
       maxFiles: 3,
     }),
 
     // Arquivo combinado
     new winston.transports.File({
       filename: path.join(logsDir, "combined.log"),
-      maxsize: 10 * 1024 * 1024, // 10MB
+      maxsize: 10 * 1024 * 1024,
       maxFiles: 2,
     }),
   ],

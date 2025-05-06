@@ -1,5 +1,5 @@
 const userService = require("../services/userService");
-const mailService = require("../services/emailService"); // Corrigido
+const mailService = require("../services/emailService");
 const { formatUserForResponse } = require("../utils/helpers");
 
 module.exports = {

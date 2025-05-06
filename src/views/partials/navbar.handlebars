@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <a href="/">Home</a>
+  {{#if user}}
+    <a href="/perfil">Perfil</a>
+    {{#if (eq user.role "admin")}}<a href="/admin">Admin</a>{{/if}}
+    <a href="/logout">Logout</a>
+  {{else}}
+    <a href="/login">Login</a>
+  {{/if}}
+</nav>

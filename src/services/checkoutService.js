@@ -1,13 +1,13 @@
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
 const Ticket = require("../models/Ticket");
-const logger = require("../utils/logger"); // Adicione um sistema de logs
+const logger = require("../utils/logger");
 const cartService = require("./cartService");
 
 module.exports = {
   async processCheckout(cartId, user) {
     const cart = await cartService.getCartById(cartId);
-    // ...
+
     await cartService.updateCartAfterPurchase(cartId, remainingProducts);
 
     try {
@@ -88,7 +88,7 @@ module.exports = {
       };
     } catch (error) {
       logger.error(`Erro no checkout: ${error.message}`, { cartId, user });
-      throw error; // Re-lança para o controller tratar
+      throw error;
     }
   },
 };

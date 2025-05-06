@@ -1,8 +1,32 @@
-{
-    "title": "Smartphone",
-    "description": "Um smartphone avançado",
-    "code": "SM123",
-    "price": 999.99,
-    "stock": 50,
-    "category": "electronics"
+[
+  {
+    "id": "prod001",
+    "title": "Smartphone Samsung Galaxy S22",
+    "description": "Celular com 128GB, câmera tripla e tela AMOLED.",
+    "price": 3499.99,
+    "thumbnail": "https://via.placeholder.com/150",
+    "code": "SGS22",
+    "stock": 15,
+    "category": "celulares"
+  },
+  {
+    "id": "prod002",
+    "title": "Notebook Dell Inspiron 15",
+    "description": "Notebook com Intel i7, 16GB RAM e SSD 512GB.",
+    "price": 5299.9,
+    "thumbnail": "https://via.placeholder.com/150",
+    "code": "DNB15",
+    "stock": 10,
+    "category": "notebooks"
+  },
+  {
+    "id": "prod003",
+    "title": "Fone de Ouvido Bluetooth JBL",
+    "description": "Fone JBL com até 40h de bateria e cancelamento de ruído.",
+    "price": 399.9,
+    "thumbnail": "https://via.placeholder.com/150",
+    "code": "JBLBT",
+    "stock": 25,
+    "category": "acessorios"
   }
+]

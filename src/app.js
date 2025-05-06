@@ -43,7 +43,6 @@ app.get("/admin", (req, res) => res.render("admin"));
 
 // Rotas de API
 app.use("/api/products", require("./routes/product.routes"));
-// Adicione outras rotas se tiver (ex: /api/users, /api/carts, etc)
 
 // Página 404
 app.use((req, res) => {

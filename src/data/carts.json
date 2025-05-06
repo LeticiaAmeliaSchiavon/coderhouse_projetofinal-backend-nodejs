@@ -1,3 +1,24 @@
-{
-    "quantity": 2
+[
+  {
+    "id": "cart001",
+    "products": [
+      {
+        "product": "prod001",
+        "quantity": 1
+      },
+      {
+        "product": "prod003",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "id": "cart002",
+    "products": [
+      {
+        "product": "prod002",
+        "quantity": 1
+      }
+    ]
   }
+]
