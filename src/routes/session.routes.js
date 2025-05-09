@@ -15,15 +15,16 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-    // Autenticação com sucesso
+    // Login com sucesso via GitHub
     res.redirect("/perfil");
   }
 );
 
 // Logout
-router.get("/logout", (req, res) => {
-  req.logout(() => {
-    res.redirect("/");
+router.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) return next(err);
+    res.redirect("/login");
   });
 });
 

@@ -1,15 +1,17 @@
-<div class="container">
-  <h2>Login</h2>
-  <form action="/auth/login" method="POST">
-    <label for="email">E-mail:</label>
-    <input type="email" name="email" required />
+<h2>Entrar</h2>
+<form action="/login" method="POST">
+  <input type="email" name="email" placeholder="Email" required />
+  <input type="password" name="password" placeholder="Senha" required />
+  <button type="submit">Login</button>
+</form>
 
-    <label for="password">Senha:</label>
-    <input type="password" name="password" required />
+<h2>Ou registre-se</h2>
+<form action="/register" method="POST">
+  <input type="text" name="name" placeholder="Nome" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <input type="password" name="password" placeholder="Senha" required />
+  <button type="submit">Cadastrar</button>
+</form>
 
-    <button type="submit" class="btn">Entrar</button>
-  </form>
-
-  <p>Ou entre com o GitHub:</p>
-  <a href="/auth/github" class="btn">Login com GitHub</a>
-</div>
+<p>Ou entre com GitHub:</p>
+<a href="/auth/github">Login com GitHub</a>

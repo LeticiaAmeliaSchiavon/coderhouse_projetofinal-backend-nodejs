@@ -1,0 +1,35 @@
+{{! views/register.handlebars }}
+<div class="container">
+  <h2>Crie sua conta</h2>
+
+  <form action="/register" method="POST" class="form">
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirmar senha:</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn">Cadastrar</button>
+  </form>
+
+  <p>Já tem uma conta? <a href="/login">Faça login</a></p>
+</div>

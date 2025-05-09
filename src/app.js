@@ -32,6 +32,18 @@ app.engine(
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
+// Sessões
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Rotas de views
 app.get("/", (req, res) => res.render("home"));
 app.get("/perfil", (req, res) => {

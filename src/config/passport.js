@@ -1,7 +1,31 @@
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const GitHubStrategy = require("passport-github2").Strategy;
+const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
+// Estratégia local
+passport.use(
+  new LocalStrategy(
+    { usernameField: "email" },
+    async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user)
+          return done(null, false, { message: "Usuário não encontrado" });
+
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) return done(null, false, { message: "Senha incorreta" });
+
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    }
+  )
+);
+
+// Estratégia GitHub
 passport.use(
   new GitHubStrategy(
     {
@@ -9,13 +33,11 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
-    async function (accessToken, refreshToken, profile, done) {
+    async (accessToken, refreshToken, profile, done) => {
       try {
-        // Verifica se o usuário já existe no banco pelo GitHub ID
         let user = await User.findOne({ githubId: profile.id });
 
         if (!user) {
-          // Se não existir, cria um novo
           user = await User.create({
             githubId: profile.id,
             name: profile.displayName || profile.username,
@@ -31,7 +53,6 @@ passport.use(
   )
 );
 
-// Serialização padrão
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });
