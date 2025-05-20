@@ -56,6 +56,9 @@ app.get("/admin", (req, res) => res.render("admin"));
 // Rotas de API
 app.use("/api/products", require("./routes/product.routes"));
 
+// Rotas de autenticação
+app.use("/auth", require("./routes/session.routes"));
+
 // Página 404
 app.use((req, res) => {
   res.status(404).render("404");
